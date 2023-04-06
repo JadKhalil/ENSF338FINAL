@@ -1,9 +1,10 @@
+
+//  binary search tree
+
 package main.java.mylib.datastructures.trees;
 
 import main.java.mylib.datastructures.nodes.TNode;
-import main.java.mylib.datastructures.linear.QueueLL;
 import java.util.*;
-import javax.management.Query;
 
 public class BST {
 
@@ -62,7 +63,7 @@ public class BST {
         return root;
     }
 
-    protected int height(TNode node) {
+    public int height(TNode node) {
         if (node == null)
             return 0;
 
@@ -112,7 +113,7 @@ public class BST {
         return root;
     }
 
-    int minValue(TNode root) {
+    public int minValue(TNode root) {
         int minV = root.getData();
         while (root.getLeft() != null) {
             minV = root.getLeft().getData();

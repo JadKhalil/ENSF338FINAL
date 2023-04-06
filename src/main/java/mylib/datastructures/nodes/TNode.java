@@ -1,11 +1,12 @@
+
 package main.java.mylib.datastructures.nodes;
 
 public class TNode {
-    int data;
-    TNode left;
-    TNode right;
-    TNode parent;
-    int balance;
+    public int data;
+    public TNode left;
+    public TNode right;
+    public TNode parent;
+    public int balance;
 
     public TNode() {
         this.left = null;

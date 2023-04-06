@@ -1,3 +1,6 @@
+
+// Circular doubly linked list
+
 package main.java.mylib.datastructures.linear;
 
 import main.java.mylib.datastructures.nodes.DNode;
@@ -16,9 +19,20 @@ public class CDLL extends DLL {
 
     public void InsertHead(DNode node) {
         super.InsertHead(node);
-        this.head.prev = this.tail;
-        this.tail.next = this.head;
-    }
+        if (this.size > 1) {
+            this.head.prev = this.tail;
+            this.tail.next = this.head;
+        } else {
+            this.head.prev = this.head;
+            this.tail.next = this.head;
+        }
+    }    
+
+    // public void InsertHead(DNode node) {
+    //     super.InsertHead(node);
+    //     this.head.prev = this.tail;
+    //     this.tail.next = this.head;
+    // }
 
     public void InsertTail(DNode node) {
         super.InsertTail(node);
@@ -27,8 +41,26 @@ public class CDLL extends DLL {
     }
 
     public void Insert(DNode node, int position) {
-        super.Insert(node, position);
-    }
+        if (position == 0) {
+            InsertHead(node);
+            return;
+        } else if (position >= this.size) {
+            InsertTail(node);
+            return;
+        } else {
+            super.Insert(node, position);
+            DNode current = this.head;
+            for (int i = 0; i < position - 1; i++) {
+                current = current.next;
+            }
+            this.head.prev = this.tail;
+            this.tail.next = this.head;
+        }
+    }    
+
+    // public void Insert(DNode node, int position) {
+    //     super.Insert(node, position);
+    // }
 
     public Boolean isSorted() {
         return super.isSorted();

@@ -1,3 +1,6 @@
+
+// Singly linked list
+
 package main.java.mylib.datastructures.linear;
 
 import main.java.mylib.datastructures.nodes.SNode;
@@ -181,32 +184,26 @@ public class SLL {
     public void Delete(SNode node) {
 
         if (this.head == node) {
-            DeleteHead();
-
+            this.DeleteHead();
+    
         } else if (this.tail == node) {
-            DeleteTail();
-
+            this.DeleteTail();
+    
         } else {
             SNode ptr = this.head;
-            int i = 0;
-            Boolean found = false;
-            while (i < this.size) {
+            while (ptr.next != null) {
                 if (ptr.next == node) {
                     SNode nextPtr = ptr.next;
                     ptr.next = nextPtr.next;
                     nextPtr.next = null;
-                    found = true;
+                    this.size--; // Decrement the list size
+                    return; // Exit the method after successful deletion
                 }
-                i++;
+                ptr = ptr.next;
             }
-            if (!found) {
-                System.out.println("could not find list to delete");
-            }
-
         }
-
     }
-
+    
     public void DeleteHead() {
 
         if (size == 0) {
@@ -271,7 +268,7 @@ public class SLL {
 
     public void Print() {
 
-        int i = 0;
+        // int i = 0;
         if (this.size == 0) {
             System.out.println("Empty list stuff");
         } else {
@@ -285,7 +282,7 @@ public class SLL {
 
     }
 
-    protected SNode head;
-    protected SNode tail;
-    int size;
+    public SNode head;
+    public SNode tail;
+    public int size;
 }

@@ -1,10 +1,14 @@
-package main.java.mylib.datastructures.linear;
 
-import javax.swing.text.StyledEditorKit.BoldAction;
+// Doubly linked list
+
+package main.java.mylib.datastructures.linear;
 
 import main.java.mylib.datastructures.nodes.DNode;
 
 public class DLL {
+    public DNode head;
+    public DNode tail;
+    public int size;
 
     public DLL() {
         this.head = null;
@@ -117,23 +121,25 @@ public class DLL {
             DeleteTail();
         } else {
             DNode ptr = this.head.next;
-
-            while (ptr != this.tail.next) {
+    
+            while (ptr != null) {
                 if (ptr == node) {
-                    DNode helpPtr = ptr.prev;
-
-                    helpPtr.next = ptr.next;
+                    DNode prevPtr = ptr.prev;
+                    DNode nextPtr = ptr.next;
+    
+                    prevPtr.next = nextPtr;
+                    nextPtr.prev = prevPtr;
+    
                     ptr.prev = null;
-
-                    ptr = ptr.next;
-                    ptr.prev = helpPtr;
-
+                    ptr.next = null;
+    
+                    this.size--;
+                    break;
                 }
                 ptr = ptr.next;
             }
-            this.size--;
         }
-    }
+    }    
 
     public void Sort() {
         if (this.size == 0 || this.size == 1)
@@ -218,19 +224,30 @@ public class DLL {
     }
 
     public Boolean isSorted() {
-
-        if (this.size == 1 || this.size == 0)
+        if (this.size == 1 || this.size == 0) {
             return true;
+        }
 
         DNode ptr = this.head;
         int prev = ptr.data;
         ptr = ptr.next;
 
-        while (ptr != null) {
-            if (ptr.data < prev)
-                return false;
-            prev = ptr.data;
-            ptr = ptr.next;
+        if (this instanceof CDLL) {
+            while (ptr != this.head) {
+                if (ptr.data < prev) {
+                    return false;
+                }
+                prev = ptr.data;
+                ptr = ptr.next;
+            }
+        } else {
+            while (ptr != null) {
+                if (ptr.data < prev) {
+                    return false;
+                }
+                prev = ptr.data;
+                ptr = ptr.next;
+            }
         }
 
         return true;
@@ -286,7 +303,4 @@ public class DLL {
         }
     }
 
-    protected DNode head;
-    protected DNode tail;
-    protected int size;
 }

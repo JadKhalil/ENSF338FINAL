@@ -1,6 +1,7 @@
-package main.java.mylib.datastructures.trees;
 
-import javax.management.RuntimeErrorException;
+// AVL tree
+
+package main.java.mylib.datastructures.trees;
 
 import main.java.mylib.datastructures.nodes.TNode;
 
@@ -119,13 +120,12 @@ public class AVL extends BST {
 
     public void Insert(int val) {
         TNode node = new TNode(val, 0, null, null, null);
-        InsertRec(this.root, node);
+        setRoot(InsertRec(this.root, node));
 
     }
 
     public void Insert(TNode node) {
-        InsertRec(this.root, node);
-
+        setRoot(InsertRec(this.root, node));
     }
 
     private TNode InsertRec(TNode root, TNode node) {
