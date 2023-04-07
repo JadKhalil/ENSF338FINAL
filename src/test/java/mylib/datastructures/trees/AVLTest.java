@@ -188,8 +188,8 @@ public class AVLTest {
         avl.Insert(1);
         avl.Insert(2);
 
-        // avl.Delete(10);
-        // avl.Delete(11);
+        avl.Delete(10);
+        avl.Delete(11);
 
         Assert.assertEquals(1, avl.getRoot().getData());
         Assert.assertEquals(0, avl.getRoot().getLeft().getData());

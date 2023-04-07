@@ -68,14 +68,14 @@ public class AVL extends BST {
         int balance = root.getBalance();
 
         if (balance > 1) {
-            if (super.height(root.getRight().getRight()) > super.height(root.getRight().getLeft())) {
+            if (super.height(root.getRight().getRight()) >= super.height(root.getRight().getLeft())) {
                 root = rotateLeft(root);
             } else {
                 root.setRight(rotateRight(root.getRight()));
                 root = rotateLeft(root);
             }
         } else if (balance < -1) {
-            if (super.height(root.getLeft().getLeft()) > super.height(root.getLeft().getRight())) {
+            if (super.height(root.getLeft().getLeft()) >= super.height(root.getLeft().getRight())) {
                 root = rotateRight(root);
             } else {
                 root.setLeft(rotateLeft(root.getLeft()));

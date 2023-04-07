@@ -10,18 +10,23 @@ class App {
     public static void main(String args[]) {
         AVL avl = new AVL();
         int negativeNum = -1;
+        avl.Insert(9);
+        avl.Insert(5);
         avl.Insert(10);
+        avl.Insert(0);
         avl.Insert(6);
         avl.Insert(11);
+        avl.Insert(negativeNum);
         avl.Insert(1);
-        avl.Insert(7);
-        avl.Insert(12);
-        avl.Insert(0);
         avl.Insert(2);
-        avl.Insert(3);
 
-        System.out.println("breadth first");
-        // avl.Delete(11);
+        System.out.println("before");
+        avl.printBF();
+
+        avl.Delete(10);
+        avl.Delete(11);
+
+        System.out.println(":After");
         avl.printBF();
 
         // System.out.println(avl.getRoot().getLeft().getParent().getData());
