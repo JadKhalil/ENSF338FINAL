@@ -29,6 +29,9 @@ class App {
         System.out.println(":After");
         avl.printBF();
 
+        avl.Delete(0);
+        avl.printBF();
+
         // System.out.println(avl.getRoot().getLeft().getParent().getData());
 
         // BST x = new BST();

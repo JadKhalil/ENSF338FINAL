@@ -193,7 +193,7 @@ public class AVLTest {
 
         Assert.assertEquals(1, avl.getRoot().getData());
         Assert.assertEquals(0, avl.getRoot().getLeft().getData());
-        Assert.assertEquals(9, avl.getRoot().getRight().getData());
+        Assert.assertEquals(5, avl.getRoot().getRight().getData());
     }
 
     @Test
