@@ -64,6 +64,7 @@ public class AVL extends BST {
     }
 
     private TNode BalanceAVL(TNode root) {
+        super.height(this.root);
         int balance = root.getBalance();
 
         if (balance > 1) {
@@ -75,10 +76,8 @@ public class AVL extends BST {
             }
         } else if (balance < -1) {
             if (super.height(root.getLeft().getLeft()) > super.height(root.getLeft().getRight())) {
-                System.out.println("here!");
                 root = rotateRight(root);
             } else {
-                System.out.println("over der!");
                 root.setLeft(rotateLeft(root.getLeft()));
                 root = rotateRight(root);
             }
@@ -88,12 +87,24 @@ public class AVL extends BST {
     }
 
     private TNode rotateRight(TNode node) {
+
+        Boolean changeParent = false;
+        // this case is for when we are rebalancing parent node
+        // in this case use this
+        if (node.getParent() == null) {
+            changeParent = true;
+        }
+
         TNode x = node.getLeft();
         TNode z = x.getRight();
         x.setRight(node);
         node.setLeft(z);
 
         node.setParent(x);
+        if (changeParent) {
+            x.setParent(null);
+        }
+
         if (z != null)
             z.setParent(node);
         super.height(this.root);
@@ -101,12 +112,22 @@ public class AVL extends BST {
     }
 
     private TNode rotateLeft(TNode node) {
+        Boolean changeParent = false;
+        // this case is for when we are rebalancing parent node
+        // in this case use this
+        if (node.getParent() == null) {
+            changeParent = true;
+        }
+
         TNode x = node.getRight();
         TNode z = x.getLeft();
         x.setLeft(node);
         node.setRight(z);
 
         node.setParent(x);
+        if (changeParent) {
+            x.setParent(null);
+        }
         if (z != null)
             z.setParent(node);
 
@@ -183,10 +204,10 @@ public class AVL extends BST {
             root.setRight(inOrderDel);
         }
 
-        if (root != null)
-            root = BalanceAVL(root);
+        // if (root != null)
+        // root = BalanceAVL(root);
 
-        return root;
+        return BalanceAVL(root);
     }
 
     @Override

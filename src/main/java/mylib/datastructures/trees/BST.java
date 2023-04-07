@@ -98,7 +98,6 @@ public class BST {
             TNode result = DeleteRec(root.getRight(), val);
             root.setRight(result);
         } else {
-
             if (root.getLeft() == null)
                 return root.getRight();
             else if (root.getRight() == null)
@@ -173,7 +172,7 @@ public class BST {
         while (!queue.isEmpty()) {
 
             TNode front = queue.peek();
-            display.append(front.getData());
+            display.append(front.getData() + " ");
 
             if (front.getLeft() != null)
                 nextLevel.add(front.getLeft());
@@ -182,7 +181,7 @@ public class BST {
 
             queue.remove();
             if (queue.isEmpty()) {
-                System.out.println(display);
+                System.out.println(display.toString());
 
                 // now copy the elements from nextLevel to queue
                 while (!nextLevel.isEmpty()) {
