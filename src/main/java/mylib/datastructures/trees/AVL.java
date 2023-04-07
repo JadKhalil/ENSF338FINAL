@@ -69,15 +69,19 @@ public class AVL extends BST {
 
         if (balance > 1) {
             if (super.height(root.getRight().getRight()) >= super.height(root.getRight().getLeft())) {
+                System.out.println(">1 " + root.getData());
                 root = rotateLeft(root);
             } else {
+                System.out.println(">>1 " + root.getData());
                 root.setRight(rotateRight(root.getRight()));
                 root = rotateLeft(root);
             }
         } else if (balance < -1) {
             if (super.height(root.getLeft().getLeft()) >= super.height(root.getLeft().getRight())) {
+                System.out.println("<-1 " + root.getData());
                 root = rotateRight(root);
             } else {
+                System.out.println("<<-1 " + root.getData());
                 root.setLeft(rotateLeft(root.getLeft()));
                 root = rotateRight(root);
             }
@@ -178,6 +182,7 @@ public class AVL extends BST {
             this.root = DeleteRec(this.root, val);
             height(this.root);
         }
+        super.setParents(this.root, null);
     }
 
     private TNode DeleteRec(TNode root, int val) {

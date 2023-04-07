@@ -85,6 +85,8 @@ public class BST {
             height(this.root);
         }
 
+        setParents(this.root, null);
+
     }
 
     private TNode DeleteRec(TNode root, int val) {
@@ -136,6 +138,14 @@ public class BST {
         }
 
         return null;
+    }
+
+    protected void setParents(TNode root, TNode parent) {
+        if (root != null) {
+            root.setParent(parent);
+            setParents(root.getLeft(), root);
+            setParents(root.getRight(), root);
+        }
     }
 
     public void printInOrder() {
