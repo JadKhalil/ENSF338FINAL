@@ -231,4 +231,240 @@ public class AVLTest {
         Assert.assertEquals(20, avl.getRoot().getLeft().getData());
         Assert.assertEquals(40, avl.getRoot().getRight().getData());
     }
+
+    @Test
+    public void testParentsWithDeletion() {
+        AVL avl = new AVL();
+        avl.Insert(7);
+        avl.Insert(25);
+        avl.Insert(13);
+        avl.Insert(14);
+        avl.Insert(78);
+        avl.Insert(69);
+        avl.Insert(36);
+        avl.Insert(100);
+
+        avl.Delete(7);
+        avl.Delete(13);
+
+        Assert.assertTrue(Math.abs(avl.getRoot().getBalance()) <= 1);
+
+        Assert.assertNull(avl.getRoot().getParent());
+        Assert.assertEquals(69, avl.getRoot().getLeft().getParent().getData());
+        Assert.assertEquals(69, avl.getRoot().getRight().getParent().getData());
+        Assert.assertEquals(25, avl.getRoot().getLeft().getLeft().getParent().getData());
+        Assert.assertEquals(25, avl.getRoot().getLeft().getRight().getParent().getData());
+        Assert.assertEquals(78, avl.getRoot().getRight().getRight().getParent().getData());
+    }
+
+    @Test
+    public void testParentsWithOutDeletion() {
+        AVL avl = new AVL();
+        avl.Insert(26);
+        avl.Insert(35);
+        avl.Insert(87);
+        avl.Insert(22);
+        avl.Insert(65);
+        avl.Insert(30);
+        avl.Insert(4);
+
+
+        Assert.assertTrue(Math.abs(avl.getRoot().getBalance()) <= 1);
+
+        Assert.assertNull(avl.getRoot().getParent());
+        Assert.assertEquals(35, avl.getRoot().getLeft().getParent().getData());
+        Assert.assertEquals(35, avl.getRoot().getRight().getParent().getData());
+        Assert.assertEquals(26, avl.getRoot().getLeft().getLeft().getParent().getData());
+        Assert.assertEquals(26, avl.getRoot().getLeft().getRight().getParent().getData());
+        Assert.assertEquals(87, avl.getRoot().getRight().getLeft().getParent().getData());
+        Assert.assertEquals(22, avl.getRoot().getLeft().getLeft().getLeft().getParent().getData());
+    }
+
+    @Test
+    public void testParentsWithRandom1() {
+        AVL avl = new AVL();
+        avl.Insert(99);
+        avl.Insert(22);
+        avl.Insert(44);
+        avl.Insert(77);
+        avl.Insert(55);
+        avl.Insert(11);
+
+        avl.Delete(77);
+        avl.Delete(44);
+        avl.Delete(11);
+
+        avl.Insert(100);
+        avl.Insert(200);
+        avl.Insert(1);
+        avl.Insert(20);
+
+        avl.Delete(100);
+
+        avl.Insert(300);
+        avl.Insert(100);
+        avl.Insert(2);
+        avl.Insert(30);
+
+        avl.Delete(55);
+        avl.Delete(20);
+
+        Assert.assertTrue(Math.abs(avl.getRoot().getBalance()) <= 1);
+
+        Assert.assertNull(avl.getRoot().getParent());
+
+        Assert.assertEquals(30, avl.getRoot().getLeft().getParent().getData());
+        Assert.assertEquals(30, avl.getRoot().getRight().getParent().getData());
+
+        Assert.assertEquals(2, avl.getRoot().getLeft().getLeft().getParent().getData());
+        Assert.assertEquals(2, avl.getRoot().getLeft().getRight().getParent().getData());
+        Assert.assertEquals(200, avl.getRoot().getRight().getLeft().getParent().getData());
+        Assert.assertEquals(200, avl.getRoot().getRight().getRight().getParent().getData());
+
+        Assert.assertEquals(99, avl.getRoot().getRight().getLeft().getRight().getParent().getData());
+    }
+
+    @Test
+    public void testParentsWithRandom2() {
+        AVL avl = new AVL();
+        avl.Insert(88);
+        avl.Insert(22);
+        avl.Insert(33);
+        avl.Insert(77);
+        avl.Insert(55);
+        avl.Insert(11);
+        avl.Insert(66);
+
+        avl.Delete(66);
+        avl.Delete(33);
+
+        avl.Insert(123);
+        avl.Insert(456);
+        avl.Insert(321);
+
+        avl.Delete(11);
+        avl.Delete(321);
+        
+        avl.Insert(333);
+        avl.Insert(222);
+
+        Assert.assertTrue(Math.abs(avl.getRoot().getBalance()) <= 1);
+
+        Assert.assertNull(avl.getRoot().getParent());
+        
+        Assert.assertEquals(77, avl.getRoot().getLeft().getParent().getData());
+        Assert.assertEquals(77, avl.getRoot().getRight().getParent().getData());
+
+        Assert.assertEquals(22, avl.getRoot().getLeft().getRight().getParent().getData());
+        Assert.assertEquals(123, avl.getRoot().getRight().getLeft().getParent().getData());
+        Assert.assertEquals(123, avl.getRoot().getRight().getRight().getParent().getData());
+
+        Assert.assertEquals(333, avl.getRoot().getRight().getRight().getLeft().getParent().getData());
+        Assert.assertEquals(333, avl.getRoot().getRight().getRight().getRight().getParent().getData());
+    }
+
+    @Test
+    public void testChildrenWithRandom1() {
+        AVL avl = new AVL();
+        avl.Insert(99);
+        avl.Insert(22);
+        avl.Insert(44);
+        avl.Insert(77);
+        avl.Insert(55);
+        avl.Insert(11);
+
+        avl.Delete(77);
+        avl.Delete(44);
+        avl.Delete(11);
+
+        avl.Insert(100);
+        avl.Insert(200);
+        avl.Insert(1);
+        avl.Insert(20);
+
+        avl.Delete(100);
+
+        avl.Insert(300);
+        avl.Insert(100);
+        avl.Insert(2);
+        avl.Insert(30);
+
+        avl.Delete(55);
+        avl.Delete(20);
+
+        Assert.assertTrue(Math.abs(avl.getRoot().getBalance()) <= 1);
+
+        Assert.assertEquals(30, avl.getRoot().getData());
+
+        Assert.assertEquals(2, avl.getRoot().getLeft().getData());
+        Assert.assertEquals(200, avl.getRoot().getRight().getData());
+
+        Assert.assertEquals(1, avl.getRoot().getLeft().getLeft().getData());
+        Assert.assertEquals(22, avl.getRoot().getLeft().getRight().getData());
+        Assert.assertEquals(99, avl.getRoot().getRight().getLeft().getData());
+        Assert.assertEquals(300, avl.getRoot().getRight().getRight().getData());
+
+        Assert.assertNull(avl.getRoot().getLeft().getLeft().getLeft());
+        Assert.assertNull(avl.getRoot().getLeft().getLeft().getRight());
+        Assert.assertNull(avl.getRoot().getLeft().getRight().getLeft());
+        Assert.assertNull(avl.getRoot().getLeft().getRight().getRight());
+        Assert.assertNull(avl.getRoot().getRight().getLeft().getLeft());
+        Assert.assertEquals(100, avl.getRoot().getRight().getLeft().getRight().getData());
+        Assert.assertNull(avl.getRoot().getRight().getRight().getLeft());
+        Assert.assertNull(avl.getRoot().getRight().getRight().getRight());
+
+        Assert.assertNull(avl.getRoot().getRight().getLeft().getRight().getLeft());
+        Assert.assertNull(avl.getRoot().getRight().getLeft().getRight().getRight());
+    }
+
+    @Test
+    public void testChildrenWithRandom2() {
+        AVL avl = new AVL();
+        avl.Insert(88);
+        avl.Insert(22);
+        avl.Insert(33);
+        avl.Insert(77);
+        avl.Insert(55);
+        avl.Insert(11);
+        avl.Insert(66);
+
+        avl.Delete(66);
+        avl.Delete(33);
+
+        avl.Insert(123);
+        avl.Insert(456);
+        avl.Insert(321);
+
+        avl.Delete(11);
+        avl.Delete(321);
+        
+        avl.Insert(333);
+        avl.Insert(222);
+
+        Assert.assertTrue(Math.abs(avl.getRoot().getBalance()) <= 1);
+
+        Assert.assertEquals(77, avl.getRoot().getData());
+
+        Assert.assertEquals(22, avl.getRoot().getLeft().getData());
+        Assert.assertEquals(123, avl.getRoot().getRight().getData());
+
+        Assert.assertNull(avl.getRoot().getLeft().getLeft());
+        Assert.assertEquals(55, avl.getRoot().getLeft().getRight().getData());
+        Assert.assertEquals(88, avl.getRoot().getRight().getLeft().getData());
+        Assert.assertEquals(333, avl.getRoot().getRight().getRight().getData());
+
+        Assert.assertNull(avl.getRoot().getLeft().getLeft().getLeft());
+        Assert.assertNull(avl.getRoot().getLeft().getLeft().getRight());
+        Assert.assertNull(avl.getRoot().getLeft().getRight().getLeft());
+        Assert.assertNull(avl.getRoot().getLeft().getRight().getRight());
+        Assert.assertNull(avl.getRoot().getRight().getLeft().getLeft());
+        Assert.assertNull(avl.getRoot().getRight().getLeft().getRight());
+        Assert.assertEquals(22, avl.getRoot().getRight().getRight().getLeft().getData());
+        Assert.assertEquals(456, avl.getRoot().getRight().getRight().getRight().getData());
+
+        Assert.assertNull(avl.getRoot().getRight().getRight().getLeft().getLeft());
+        Assert.assertNull(avl.getRoot().getRight().getRight().getLeft().getRight());
+        Assert.assertNull(avl.getRoot().getRight().getRight().getRight().getLeft());
+        Assert.assertNull(avl.getRoot().getRight().getRight().getRight().getRight());
+    }
 }
