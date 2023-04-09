@@ -63,7 +63,15 @@ public class TNode {
     }
 
     public void Print() {
-        System.out.println("PRint sutffff");
+
+        System.out.println("Information on Node " + this.data);
+        System.out.println("left child is" + this.left);
+        System.out.println("Right child is " + this.right);
+        System.out.println("parent node is " + this.parent);
+        if (this.balance > 1 || this.balance < -1)
+            System.out.println("node is unbalnced with a balance factor of " + this.balance);
+        else
+            System.out.println("node is balanced with a balance factor of " + this.balance);
     }
 
 }

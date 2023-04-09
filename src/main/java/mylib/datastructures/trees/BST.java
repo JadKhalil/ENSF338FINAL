@@ -149,6 +149,7 @@ public class BST {
     }
 
     public void printInOrder() {
+        System.out.println("In order Traversal:");
         inOrder(this.root);
     }
 
@@ -156,7 +157,7 @@ public class BST {
 
         if (root != null) {
             inOrder(root.getLeft());
-            System.out.println(root.getData());
+            System.out.print(root.getData() + " ");
             inOrder(root.getRight());
         }
 

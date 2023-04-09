@@ -17,6 +17,7 @@ public class AVL extends BST {
 
     public AVL(TNode obj) {
         setRoot(obj);
+        super.setParents(this.root, null);
     }
 
     public void setRoot(TNode root) {
@@ -25,6 +26,7 @@ public class AVL extends BST {
         if (this.root.getLeft() != null || this.root.getRight() != null) {
             // this.root = BalanceAVL(root); // this must be modified
             setRootRec(this.root);
+
             // we must recursivly bottom out
             // then as we pop the call sacks we check the balance of each node
             // and balance accordingly
@@ -55,7 +57,6 @@ public class AVL extends BST {
                 }
 
                 super.height(this.root);
-                System.out.println("After one rotation " + root.getData() + ":");
                 printBF();
 
                 // make another helper function that resets the parents in the tree
@@ -69,19 +70,15 @@ public class AVL extends BST {
 
         if (balance > 1) {
             if (super.height(root.getRight().getRight()) >= super.height(root.getRight().getLeft())) {
-                System.out.println(">1 " + root.getData());
                 root = rotateLeft(root);
             } else {
-                System.out.println(">>1 " + root.getData());
                 root.setRight(rotateRight(root.getRight()));
                 root = rotateLeft(root);
             }
         } else if (balance < -1) {
             if (super.height(root.getLeft().getLeft()) >= super.height(root.getLeft().getRight())) {
-                System.out.println("<-1 " + root.getData());
                 root = rotateRight(root);
             } else {
-                System.out.println("<<-1 " + root.getData());
                 root.setLeft(rotateLeft(root.getLeft()));
                 root = rotateRight(root);
             }
